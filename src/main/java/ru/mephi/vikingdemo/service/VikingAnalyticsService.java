@@ -51,13 +51,13 @@ public class VikingAnalyticsService {
     }
 
 
-    public long countWithExactAxes(int expectedCount) {
+   public long countWithExactAxes() {
         return storage.findAll().stream()
                 .filter(v -> {
                     long axes = v.equipment().stream()
                             .filter(e -> e.name().toLowerCase().contains("axe"))
                             .count();
-                    return axes == expectedCount;
+                    return axes == 1 || axes==2;
                 })
                 .count();
     }
