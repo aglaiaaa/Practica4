@@ -79,6 +79,7 @@ public class VikingAnalyticsService {
     public List<Viking> redHairedSortedByAge() {
         return storage.findAll().stream()
                 .filter(v -> v.hairColor() == HairColor.Red)
+                .filter(v -> v.beardStyle() != BeardStyle.CLEAN_SHAVEN)
                 .sorted(Comparator.comparingInt(Viking::age))
                 .collect(Collectors.toList());
     }
@@ -91,10 +92,12 @@ public class VikingAnalyticsService {
                 .max(Integer::compareTo);
     }
 
-    public List<Integer> collectEvenIds() {
+
+    public Integer[] collectEvenIds() {
         return storage.findAll().stream()
                 .map(Viking::id)
                 .filter(id -> id != null && id % 2 == 0)
-                .collect(Collectors.toList());
+                .toArray(Integer[]::new);
     }
 }
+
