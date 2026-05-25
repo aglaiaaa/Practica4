@@ -144,9 +144,9 @@ public class VikingDesktopFrame extends JFrame {
             output = "Рыжие по возрасту:\n" +
                     redList.stream().map(v -> v.name() + " (" + v.age() + ")").collect(Collectors.joining("\n"));
         } else if (opt11.isSelected()) {
-            output = "Максимальный ID: " + analytics.findMaxId().orElse(0);
+            output = "Максимальный ID: " + analytics.findMaxId();
         } else {
-            output = "Чётные ID: " + analytics.collectEvenIds();
+            output = "Чётные ID: " + Arrays.toString(analytics.collectEvenIds());
         }
 
         JOptionPane.showMessageDialog(this, output, "Результат анализа", JOptionPane.INFORMATION_MESSAGE);
