@@ -93,15 +93,15 @@ public class VikingAnalyticsService {
     }
 
 
-    public Integer[] collectEvenIds() {
-        Integer[] ids = storage.findAll().stream()
-                .map(Viking::id)
-                .filter(Objects::nonNull)
-                .toArray(Integer[]::new);
-        
+    
+    public int[] collectEvenIds() {
+        int[] ids = vikingStorage.findAll().stream()
+                .mapToInt(Viking::id)
+                .toArray();
         return Arrays.stream(ids)
                 .filter(id -> id % 2 == 0)
-                .toArray(Integer[]::new);
+                .toArray();
     }
 }
+
 
