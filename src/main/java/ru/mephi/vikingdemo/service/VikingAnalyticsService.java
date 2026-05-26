@@ -85,17 +85,11 @@ public class VikingAnalyticsService {
     }
 
 
-    public int findMaxId() {
-        Integer[] ids = storage.findAll().stream()
-                .map(v -> v.id())
-                .filter(id -> id != null)      
-                .toArray(size -> new Integer[size]); 
-        
-        if (ids.length == 0) {
-            return 0;   
-        }
-        
-        return Arrays.stream(ids).max(Integer::compareTo).get();
+   public int findMaxId() {
+        int[] ids = vikingStorage.findAll().stream()
+                .mapToInt(Viking::id)
+                .toArray();
+        return Arrays.stream(ids).max().orElse(-1);
     }
 
 
